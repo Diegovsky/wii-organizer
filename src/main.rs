@@ -153,7 +153,7 @@ impl AppData {
         this.wbfs_folder.connect_const(&tx, Message::WbfsDirChange);
         this
     }
-    fn spawn_with_clone<'a, R, Fut>(&self, map: impl FnOnce(Self) -> Fut)
+    fn spawn_with_clone<R, Fut>(&self, map: impl FnOnce(Self) -> Fut)
     where
         R: Send + 'static,
         Fut: Future<Output = R> + Send + 'static,
@@ -281,8 +281,8 @@ fn main() -> R {
 
     // Create shared app data
     // Create update thread
-    runtime.spawn(closure! {async [mut app_data, &mut cached, &mut rx] loop {
-            if let Err(e) = update(&mut rx,&mut cached,&mut app_data).await {
+    runtime.spawn(closure! {async [app_data, &cached, &mut rx] loop {
+            if let Err(e) = update(&mut rx,&cached,&app_data).await {
                 eprintln!("Update error: {e:?}")
             }
         }
