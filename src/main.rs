@@ -1,14 +1,13 @@
 use anyhow::Context;
 use covers::WiiResources;
+use cushy::Run;
 use cushy::reactive::value::{Destination, Dynamic};
 use cushy::styles::VerticalAlign;
 use cushy::widgets::VirtualList;
-use cushy::{Application, Run};
 use directories::ProjectDirs;
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use std::sync::OnceLock;
-use std::time::Duration;
 use tokio::sync::mpsc::{Receiver, Sender};
 
 use cushy::figures::Size;
@@ -17,7 +16,7 @@ use cushy::{
     dialog::{FilePicker, PickFile},
     figures::{Zero, units::Lp},
     kludgine::AnyTexture,
-    reactive::value::{Source, Watcher},
+    reactive::value::Source,
     styles::{
         CornerRadii, Dimension,
         components::{CornerRadius, VerticalAlignment},

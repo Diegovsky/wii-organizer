@@ -5,10 +5,9 @@ use std::{
     sync::Arc,
 };
 
-use anyhow::{Context, anyhow};
+use anyhow::anyhow;
 use cushy::{
     animation::ZeroToOne,
-    figures::Zero,
     kludgine::{AnyTexture, LazyTexture, image::ImageReader},
     reactive::value::{Destination, Dynamic, Source},
     widget::MakeWidget,
@@ -17,7 +16,7 @@ use cushy::{
 use directories::ProjectDirs;
 use rc_zip_tokio::ReadZip;
 use reqwest::Client;
-use tokio::io::{AsyncRead, AsyncSeek, AsyncSeekExt, AsyncWriteExt};
+use tokio::io::AsyncWriteExt;
 
 #[derive(Default, Clone, Debug, PartialEq)]
 pub struct InProgress {
@@ -79,8 +78,6 @@ impl WiiResources {
     }
 
     async fn download_url(&self, download_url: &str, name: &str) -> R {
-        let download_url =
-            "https://www.gametdb.com/download.php?FTP=GameTDB-wii_disc-US-2025-03-19.zip";
         println!("Requesting file");
         let mut response = self.client.get(download_url).send().await?;
         if !response.status().is_success() {
