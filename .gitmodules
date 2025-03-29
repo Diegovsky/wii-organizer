@@ -1,0 +1,3 @@
+[submodule "libs/cushy"]
+	path = libs/cushy
+	url = https://github.com/khonsulabs/cushy.git

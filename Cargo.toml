@@ -1,0 +1,17 @@
+[package]
+name = "wii-organizer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.97"
+cushy = {path="libs/cushy", default-features = false, features=["tokio", "native-dialogs", "roboto-flex", "serde"]}
+directories = "6.0.0"
+easy-ext = "1.0.2"
+nod = "1.4.4"
+positioned-io = "0.3.3"
+rc-zip-tokio = "4.2.5"
+reqwest = { version = "0.12.15", default-features = false, features = ["default-tls", "http2"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+tokio = { version = "1.44.1", features = ["full"] }
